@@ -1,4 +1,25 @@
-#!/usr/bin/env python
+#!/bin/sh
 
-print "This is really basic output"
-print "<script>alert('pwned')</script>"
+mkdir -p ~/http
+
+cat <<EOF > ~/http/index.html
+<html>
+<body>
+<p class='dataset'></p>
+<p class='apikey'></p>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+<script>
+// window.location.hash = encodeURIComponent(JSON.stringify(obj))
+obj = JSON.parse(decodeURIComponent(window.location.hash))
+$('p.dataset').append(obj.dataset_box_url) // EG https://box.scraperwiki.com/b75cm0s/publishtoken
+$('p.apikey').append(obj.view_apikey)
+</script>
+</body>
+</html>
+EOF
+
+cat <<EOF
+<script>
+window.location = 'http/'
+</script>
+EOF
