@@ -2,7 +2,7 @@
 
 mkdir -p ~/http
 
-cat <<EOF > ~/http/index.html
+cat <<'EOF' > ~/http/index.html
 <html>
 <body>
 <p class='dataset'></p>
@@ -20,7 +20,7 @@ $('p.apikey').append(obj.view_apikey);
 </html>
 EOF
 
-cat <<EOF
+cat <<'EOF'
 <script>
 window.location = 'http/'
 </script>
